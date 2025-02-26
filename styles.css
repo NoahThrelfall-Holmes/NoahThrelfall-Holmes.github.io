@@ -1,16 +1,45 @@
+/* Define light theme variables */
+:root {
+    --bg-color: #f2f2f2;
+    --text-color: #222;
+    --header-bg: #f2f2f2;
+    --nav-bg-color: rgba(34, 34, 34, 0.95);
+    --button-color: #fff;
+    --link-bg: #444;
+    --link-hover-bg: #666;
+}
+
+/* Adjust variables when dark mode is preferred */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #222;
+        --text-color: #ccc;
+        --header-bg: #222;
+        --nav-bg-color: rgba(0, 0, 0, 0.85);
+        --button-color: #fff;
+        --link-bg: #333;
+        --link-hover-bg: #555;
+    }
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 /* Header styling */
 header {
+    background-color: var(--header-bg);
     text-align: center;
     padding: 1em;
 }
 
 h1 {
+    background-color: var(--header-bg);
+    text-align: center;
     margin: 0.5em 0;
 }
 
@@ -20,7 +49,7 @@ h1 {
     top: 0;
     left: 0;
     z-index: 1000;
-    background-color: rgba(34, 34, 34, 0.95);
+    background-color: var(--nav-bg-color);
     padding: 0.5em 1em;
     border-bottom-right-radius: 8px;
 }
@@ -28,7 +57,7 @@ h1 {
 /* Style the toggle button */
 .nav-menu button {
     background: none;
-    color: #fff;
+    color: var(--button-color);
     border: none;
     padding: 0.5em;
     cursor: pointer;
@@ -50,7 +79,7 @@ h1 {
     position: absolute;
     height: 3px;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--button-color);
     transition: all 0.3s ease;
 }
 
@@ -70,7 +99,7 @@ h1 {
 /* When the menu is open, transform the icon into a cross */
 .nav-menu.open .hamburger-icon .line:nth-child(1) {
     transform: rotate(45deg);
-    top: 50%;
+    top: 38%;
 }
 
 .nav-menu.open .hamburger-icon .line:nth-child(2) {
@@ -79,9 +108,8 @@ h1 {
 
 .nav-menu.open .hamburger-icon .line:nth-child(3) {
     transform: rotate(-45deg);
-    bottom: 50%;
+    bottom: 42%;
 }
-
 
 .menu-list {
     list-style: none;
@@ -90,11 +118,11 @@ h1 {
     display: none;
 }
 
-/* Style menu list links as text boxes */
+/* Style menu list links as pretty clickable text boxes */
 .menu-list li a {
     display: block;
-    background-color: #444;
-    color: #fff;
+    background-color: var(--link-bg);
+    color: var(--button-color);
     text-decoration: none;
     padding: 0.5em 1em;
     border-radius: 4px;
@@ -104,7 +132,7 @@ h1 {
 
 .menu-list li a:hover,
 .menu-list li a:focus {
-    background-color: #666;
+    background-color: var(--link-hover-bg);
     transform: scale(1.02);
 }
 
@@ -116,11 +144,8 @@ h1 {
 .projects-grid {
     display: flex;
     flex-wrap: wrap;
-    /* Allow the items to wrap to the next line */
     gap: 1rem;
-    /* Add some space between SVGs */
     justify-content: center;
-    /* Center the items */
     padding: 1rem;
     max-width: 1250px;
     margin: auto;
@@ -130,6 +155,18 @@ h1 {
     width: 100%;
     height: auto;
     transition: transform 0.2s ease;
+}
+
+/* Ensure any text inside SVGs uses the same muted color */
+.project svg text {
+    fill: var(--text-color);
+}
+
+/* Ensure SVG elements use the defined fill color */
+.project svg circle,
+.project svg rect,
+.project svg path {
+    fill: var(--svg-fill);
 }
 
 .project:hover svg {
