@@ -13,15 +13,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // Define custom grid content for each category
   const categoryContent = {
     blog: `
-      <h2>Blog Projects</h2>
+    <div class="blog-container">
       <div class="projects-grid">
-        <a href="44225.html" class="project">
+        <a href="blog/44225.html" class="project">
           <svg viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="45"></circle>
             <text x="50" y="55" font-size="10" text-anchor="middle">26/02/25</text>
           </svg>
         </a>
-        <a href="54225.html" class="project">
+        <a href="blog/54225.html" class="project">
           <svg viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="45"></circle>
             <text x="50" y="55" font-size="10" text-anchor="middle">27/02/25</text>
@@ -29,54 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </a>
         <!-- Add more blog projects as needed -->
       </div>
-    `,
-    unity: `
-      <h2>Unity Projects</h2>
-      <div class="projects-grid">
-        <a href="#" class="project">
-          <svg viewBox="0 0 100 100">
-            <rect x="10" y="10" width="80" height="80"></rect>
-            <text x="50" y="55" font-size="12" text-anchor="middle">Unity Item 1</text>
-          </svg>
-        </a>
-        <!-- Add more Unity projects as needed -->
+      <div class="blog-content">
+        <p>Select a bubble to view its content.</p>
       </div>
-    `,
-    unreal: `
-      <h2>Unreal Projects</h2>
-      <div class="projects-grid">
-        <a href="#" class="project">
-          <svg viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45"></circle>
-            <text x="50" y="55" font-size="12" text-anchor="middle">Unreal Item 1</text>
-          </svg>
-        </a>
-        <!-- Add more Unreal projects as needed -->
-      </div>
-    `,
-    modelling: `
-      <h2>Modelling Projects</h2>
-      <div class="projects-grid">
-        <a href="#" class="project">
-          <svg viewBox="0 0 100 100">
-            <rect x="10" y="10" width="80" height="80"></rect>
-            <text x="50" y="55" font-size="12" text-anchor="middle">Modelling Item 1</text>
-          </svg>
-        </a>
-        <!-- Add more Modelling projects as needed -->
-      </div>
-    `,
-    misc: `
-      <h2>Miscellaneous Projects</h2>
-      <div class="projects-grid">
-        <a href="#" class="project">
-          <svg viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45"></circle>
-            <text x="50" y="55" font-size="12" text-anchor="middle">Misc Item 1</text>
-          </svg>
-        </a>
-        <!-- Add more Misc projects as needed -->
-      </div>
+    </div>
     `
   };
 
@@ -117,19 +73,64 @@ document.addEventListener('DOMContentLoaded', function() {
 
   categories.forEach(function(categoryEl) {
     categoryEl.addEventListener('click', function() {
-      // Remove active state from all categories, add from clicked one
-      categories.forEach(el => el.classList.remove('active'));
-      categoryEl.classList.add('active');
-      
-      // Get the custom content for the selected category
-      const catId = categoryEl.getAttribute('data-category');
-      detailsSection.innerHTML = categoryContent[catId] || `<p>No projects available for ${catId}.</p>`;
+  // Remove active state from all categories, add from clicked one
+  categories.forEach(el => el.classList.remove('active'));
+  categoryEl.classList.add('active');
+  
+  // Get the custom content for the selected category
+  const catId = categoryEl.getAttribute('data-category');
+  detailsSection.innerHTML = categoryContent[catId] || `<p>No projects available for ${catId}.</p>`;
 
-      // Recalculate layout on selection change
-      recalcCategoryLayout();
+  // Additional behavior for blog projects
+  if (catId === 'blog') {
+  const blogProjects = detailsSection.querySelectorAll('.project');
+  blogProjects.forEach(project => {
+    project.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Find the dedicated blog content container
+      const blogContentDiv = detailsSection.querySelector('.blog-content');
+      const currentHref = this.getAttribute('href');
+
+      // If the same project is clicked again, clear the blog content
+      if (blogContentDiv.dataset.active === currentHref) {
+        blogContentDiv.innerHTML = '';
+        blogContentDiv.dataset.active = '';
+        return;
+      }
+
+      // Set the active project href
+      blogContentDiv.dataset.active = currentHref;
+
+      // Derive the text file path (e.g., "44225.html" becomes "44225.txt")
+      const textFile = currentHref.replace('.html', '.txt');
+
+      fetch(textFile)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(text => {
+          // Update the blog content container
+          blogContentDiv.innerHTML = `<pre>${text}</pre>`;
+        })
+        .catch(err => {
+          console.error('Error fetching blog post:', err);
+          blogContentDiv.innerHTML = `<p>Error loading blog post.</p>`;
+        });
     });
+  });
+}
+
+  // Recalculate layout on selection change
+  recalcCategoryLayout();
+});
   });
 
   // Recalculate if the SVG container is resized (optional)
-  window.addEventListener('resize', recalcCategoryLayout);
+    window.addEventListener('resize', recalcCategoryLayout);
+    
+    
 });

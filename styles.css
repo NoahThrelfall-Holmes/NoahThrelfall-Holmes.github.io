@@ -38,12 +38,38 @@ body {
 header {
   background-color: var(--header-bg);
   text-align: center;
-  padding: 1em;
+  padding-top: 2.5em;
+  padding-bottom: 1em;
 }
 
 h1 {
   margin: 0.5em 0;
 }
+
+.blog-post {
+    width: 100%;
+    background: var(--bg-color);
+    border: 1px solid var(--svg-fill);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    box-sizing: border-box;
+}
+
+.blog-container {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.blog-content {
+    flex: 1;
+    background: var(--bg-color);
+    border: 1px solid var(--svg-fill);
+    padding: 1rem;
+    box-sizing: border-box;
+    min-width: 200px;
+}
+
 
 /* Nav styling remains as before */
 .nav-menu {
@@ -98,7 +124,7 @@ h1 {
 
 .nav-menu.open .hamburger-icon .line:nth-child(1) {
   transform: rotate(45deg);
-  top: 50%;
+  top: 38%;
 }
 
 .nav-menu.open .hamburger-icon .line:nth-child(2) {
@@ -107,7 +133,7 @@ h1 {
 
 .nav-menu.open .hamburger-icon .line:nth-child(3) {
   transform: rotate(-45deg);
-  bottom: 50%;
+  bottom: 42%;
 }
 
 .menu-list {
