@@ -14,41 +14,102 @@ h1 {
     margin: 0.5em 0;
 }
 
-/* Navigation menu styling */
+/* Make the nav fixed to the top left and style the background */
 .nav-menu {
-    background-color: #222;
-    color: #fff;
-    position: relative;
-    padding: 0.5em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(34, 34, 34, 0.95);
+    padding: 0.5em 1em;
+    border-bottom-right-radius: 8px;
 }
 
+/* Style the toggle button */
 .nav-menu button {
-    background: #444;
+    background: none;
     color: #fff;
     border: none;
-    padding: 0.5em 1em;
+    padding: 0.5em;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
+
+/* Hamburger Icon */
+.hamburger-icon {
+    display: inline-block;
+    width: 24px;
+    height: 18px;
+    position: relative;
+    margin-right: 8px;
+}
+
+.hamburger-icon .line {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.hamburger-icon .line:nth-child(1) {
+    top: 0;
+}
+
+.hamburger-icon .line:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger-icon .line:nth-child(3) {
+    bottom: 0;
+}
+
+/* When the menu is open, transform the icon into a cross */
+.nav-menu.open .hamburger-icon .line:nth-child(1) {
+    transform: rotate(45deg);
+    top: 50%;
+}
+
+.nav-menu.open .hamburger-icon .line:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-menu.open .hamburger-icon .line:nth-child(3) {
+    transform: rotate(-45deg);
+    bottom: 50%;
+}
+
 
 .menu-list {
     list-style: none;
-    padding: 0;
+    padding: 0.5em 0 0 0;
     margin: 0;
     display: none;
-    /* hidden by default */
+}
+
+/* Style menu list links as text boxes */
+.menu-list li a {
+    display: block;
+    background-color: #444;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    margin: 0.25em 0;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-list li a:hover,
+.menu-list li a:focus {
+    background-color: #666;
+    transform: scale(1.02);
 }
 
 .nav-menu.open .menu-list {
     display: block;
-}
-
-.menu-list li {
-    margin: 0.5em 0;
-}
-
-.menu-list li a {
-    color: #fff;
-    text-decoration: none;
 }
 
 /* Projects grid styling */
