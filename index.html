@@ -2,10 +2,10 @@
 <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>My Portfolio</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles.css" />
         <script src="https://d3js.org/d3.v7.min.js"></script>
     </head>
 
@@ -26,46 +26,44 @@
                 Menu
             </button>
             <ul class="menu-list">
-                <!-- This is the only way to access the blog -->
-                <li><a href="blog.html">Blog</a></li>
                 <!-- Alternative navigation for projects -->
                 <li><a href="project1.html">Project1</a></li>
                 <li><a href="project2.html">Project2</a></li>
                 <li><a href="project3.html">Project3</a></li>
+                <li><a href="project4.html">Project4</a></li>
             </ul>
         </nav>
 
-        <!-- Grid of SVG containers for projects -->
-        <section class="projects-grid">
-            <a href="blog.html" class="project">
-                <svg viewBox="0 0 100 100">
-                    <!-- Insert or generate SVG content here -->
-                    <circle cx="50" cy="50" r="45" style="fill: #000000;"></circle>
-                    <text x="50" y="55" font-size="12" text-anchor="middle" fill="#333">Blog</text>
+        <!-- Embedded SVG category menu -->
+        <section class="category-menu">
+            <svg viewBox="0 0 400 50" preserveAspectRatio="xMidYMid meet">
+                <svg class="category" data-category="blog">
+                    <rect class="category-rect" x="0" y="0" width="100" height="50" />
+                    <text x="50" y="30" text-anchor="middle" class="category-text">Blog</text>
                 </svg>
-            </a>
-            <a href="project1.html" class="project">
-                <svg viewBox="0 0 100 100">
-                    <!-- Insert or generate SVG content here -->
-                    <circle cx="50" cy="50" r="45" style="fill: #000000;"></circle>
-                    <text x="50" y="55" font-size="12" text-anchor="middle" fill="#333">Project 1</text>
+                <svg class="category" data-category="unity">
+                    <rect class="category-rect" x="100" y="0" width="100" height="50" />
+                    <text x="150" y="30" text-anchor="middle" class="category-text">Unity</text>
                 </svg>
-            </a>
-            <a href="project2.html" class="project">
-                <svg viewBox="0 0 100 100">
-                    <!-- Insert or generate SVG content here -->
-                    <circle cx="50" cy="50" r="45" style="fill: #000000;"></circle>
-                    <text x="50" y="55" font-size="12" text-anchor="middle" fill="#333">Project 2</text>
+                <svg class="category" data-category="unreal">
+                    <rect class="category-rect" x="200" y="0" width="100" height="50" />
+                    <text x="250" y="30" text-anchor="middle" class="category-text">Unreal</text>
                 </svg>
-            </a>
-            <a href="project3.html" class="project">
-                <svg viewBox="0 0 100 100">
-                    <!-- Insert or generate SVG content here -->
-                    <circle cx="50" cy="50" r="45" style="fill: #000000;"></circle>
-                    <text x="50" y="55" font-size="12" text-anchor="middle" fill="#333">Project 3</text>
+                <svg class="category" data-category="modelling">
+                    <rect class="category-rect" x="300" y="0" width="100" height="50" />
+                    <text x="350" y="30" text-anchor="middle" class="category-text">Modelling</text>
                 </svg>
-            </a>
-            <!-- Add additional project links as needed -->
+                <svg class="category" data-category="misc">
+                    <rect class="category-rect" x="300" y="0" width="100" height="50" />
+                    <text x="350" y="30" text-anchor="middle" class="category-text">Misc.</text>
+                </svg>
+            </svg>
+        </section>
+
+        <!-- Container for the grid of SVG containers for the selected category -->
+        <section id="category-details">
+            <!-- This will be updated dynamically when a category is clicked -->
+            <p>Select a category above to view its projects.</p>
         </section>
 
         <!-- External Scripts -->
