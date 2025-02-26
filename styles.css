@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    text-align: center;
+    padding: 1em;
+}
+
+h1 {
+    margin: 0.5em 0;
+}
+
+/* Navigation menu styling */
+.nav-menu {
+    background-color: #222;
+    color: #fff;
+    position: relative;
+    padding: 0.5em;
+}
+
+.nav-menu button {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    /* hidden by default */
+}
+
+.nav-menu.open .menu-list {
+    display: block;
+}
+
+.menu-list li {
+    margin: 0.5em 0;
+}
+
+.menu-list li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Projects grid styling */
+.projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow the items to wrap to the next line */
+    gap: 1rem;
+    /* Add some space between SVGs */
+    justify-content: center;
+    /* Center the items */
+    padding: 1rem;
+    max-width: 1250px;
+    margin: auto;
+}
+
+.project svg {
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease;
+}
+
+.project:hover svg {
+    transform: scale(1.05);
+}
