@@ -1,2 +1,7 @@
-Dear Diary,
-Go fuck yourself
+26/02/2025
+
+- Tinkered a lil bit with the networking C++ code for Overforged/'AthenaGameJam' 
+
+- Learnt about nDisplays inside Unreal Engine for Virtual production. With Andy Voller @CopperCandle
+
+- Began creation of this here website/blog/digital Portfolio.
